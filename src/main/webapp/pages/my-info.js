@@ -25,7 +25,9 @@ function getInfo(){
                 let firstName = document.createElement('input')
                 firstName.type = "text"
                 firstName.value = employee.firstName;
-                emptyDiv.append(firstName)
+                firstName.placeholder = employee.firstName;
+                firstName.setAttribute(requred);
+                emptyDiv.append(firstName);
 
                 let lastName = document.createElement('input')
                 lastName.type = "text"
@@ -60,15 +62,33 @@ function getInfo(){
             
         }
     }
-
+    updateInfo()
     //Open my XMLHttpRequest, specifying my HTTP verb and the endpoint I would like to hit.
 
     xhr.open('GET', 'http://localhost:8080/FreeTuition/GetMyInfoServlet') //readyState 1
     xhr.send() //readyState 2
 }
 
+function updateInfo(e){
+    //We need to grab the element whose value we're trying to get
+
+    let inputs = document.getElementsByTagName('input')
+    let firstName = inputs[0].value
+    console.log("first name")  
+    console.log(firstName)   
+
+    //Stop page from refreshing
+    e.preventDefault()
+}
+
+
+
 //Info will appear as soon as the web page loads. 
 //Use window's onload event listener which fires immediately after the browser loads the window
 window.onload = () => {
     getInfo()
 }
+
+//add listener to save updates button
+let save = document.getElementById('save')
+save.addEventListener('click', updateInfo())
