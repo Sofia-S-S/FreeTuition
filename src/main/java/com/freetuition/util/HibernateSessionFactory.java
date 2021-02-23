@@ -12,7 +12,7 @@ public class HibernateSessionFactory {
 			sessionFactory = new Configuration().configure()
 					.setProperty("hibernate.connection.url",System.getenv("postgresUrl"))
 					.setProperty("hibernate.connection.username",System.getenv("postgresUsername"))
-					.setProperty("hibernate.connection.password",System.getenv("postgrasPassword"))
+					.setProperty("hibernate.connection.password",System.getenv("postgresPassword"))
 					.buildSessionFactory();
 		}
 		

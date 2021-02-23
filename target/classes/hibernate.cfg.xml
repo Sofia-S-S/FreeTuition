@@ -50,9 +50,10 @@
 		
 		<!-- ========| create | update | create-drop | validate |===================== -->
 		
-		<property name="hibernate.hbm2ddl.auto">create</property>
+		<property name="hibernate.hbm2ddl.auto">validate</property>
 		
-		<!-- ========================================================================= -->
+		<!-- ==================================Add Mapping ======================================= -->
+				<mapping class="com.freetuition.model.Card"/>
 		
 	</session-factory>
 </hibernate-configuration>
