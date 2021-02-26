@@ -13,7 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.freetuition.dao.RequestRepo;
+import com.freetuition.dao.RequestDAOImpl;
+import com.freetuition.exception.BusinessException;
 import com.freetuition.model.Request;
 
 
@@ -28,7 +29,7 @@ public class RequestsPendingServlet extends HttpServlet {
         super();
     }
     
-    RequestRepo repo = new RequestRepo();
+    RequestDAOImpl repo = new RequestDAOImpl();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -39,13 +40,20 @@ public class RequestsPendingServlet extends HttpServlet {
 //																	new Request(3,300,"Revature","Java","full-time", 599.00, "pending", new Date(),null,new Date())
 //																	));
 		
-		List<Request> reqList = repo.findAll();
+		List<Request> reqList;
+		try {
+			reqList = repo.findAll("pending");
+
 		
 		ObjectMapper objectMapper = new ObjectMapper();
 		
 		final String JSON = objectMapper.writeValueAsString(reqList);
 		
 		response.getWriter().write(JSON);
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub

@@ -2,11 +2,23 @@ package com.freetuition.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "request_approved", schema="freetuition")
+
 public class RequestApproved {
-	
+	@Id
+	@Column
 	private int requestId;
+	@Column
 	private double amount;
+	@Column
 	private int managerId;
+	@Column
 	private Date date;
 
 	public RequestApproved () {}

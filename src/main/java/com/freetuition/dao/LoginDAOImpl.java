@@ -1,68 +1,52 @@
 package com.freetuition.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
-import com.freetuition.dbutil.PostresqlConnection;
+
 import com.freetuition.exception.BusinessException;
 import com.freetuition.model.Login;
+import com.freetuition.util.HibernateSessionFactory;
 
 public class LoginDAOImpl {
 	// --------------------------------------Customer Log In
 	// -------------------------------------
 
-	public Login letEmployeeLogin(String login, String password) throws BusinessException, ClassNotFoundException {
-		Login lgn = null;
-			try (Connection connection = PostresqlConnection.getConnection()) {
-				String sql = "select employee_id from freetuition.login where login=? AND password=?";
-				PreparedStatement preparedStatement = connection.prepareStatement(sql);
-				preparedStatement.setString(1, login);
-				preparedStatement.setString(2, password);
-				ResultSet resultSet = preparedStatement.executeQuery();
+	
+//CHANGE TO LOGIN AND PASSWORD	
+	public Login letEmployeeLogin(String login, String password) throws BusinessException, ClassNotFoundException  {
+		Login lg= null;
+	
+		
+		Session s = null;
+		Transaction tx = null;
+		
+		try {
+			s = HibernateSessionFactory.getSession();
+			tx = s.beginTransaction();
+			//-------------------------------------
+			
 
-				if (resultSet.next()) {
-
-					lgn = new Login();
-					lgn.setLogin(login);
-					lgn.setPassword(password);
-					lgn.setId(resultSet.getInt("employee_id"));
-
-				} else {
-
-					throw new BusinessException("No customer found with such login or password");
-				}
-			} catch (SQLException e) {
-				
-				System.out.println(e);
-
-				throw new BusinessException("Internal error occured contact admin ");
-			}
-		return lgn;
-	}
-	// -----------------------------------Create Customer AND Create CustomerLogin
-
-	public int createLogin(Login lgn) throws BusinessException, ClassNotFoundException {
-		int c = 0;
-		try (Connection connection = PostresqlConnection.getConnection()) {
-
-			String sql = "insert into freetuition.login (login, password) values(?,?)";
-
-			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
-			preparedStatement.setString(1, lgn.getLogin());
-			preparedStatement.setString(2, lgn.getPassword());
-
-			c = preparedStatement.executeUpdate();
-
-		} catch (SQLException e) {
-
-			System.out.println(e);
-
-			throw new BusinessException("Some internal error occured. Please contact admin");
+			lg = s.createQuery("FROM Login WHERE login = :login AND password = :password",Login.class).setParameter("login", login).setParameter("password",password).getSingleResult();
+			
+			
+			
+//			lg = s.get(Login.class,login); //will return null if there is not any// always runs to db
+//			c = s.load(Card.class, id); // will throw exception if not any // looks in proxies // need to comment out commit and close
+			//-------------------------------------
+			
+			
+			
+			tx.commit();
+		}catch(HibernateException e) {
+			e.printStackTrace();
+			tx.rollback();
+		}finally {
+			s.close();
 		}
-		return c;
+		return lg;
 	}
+
 
 }

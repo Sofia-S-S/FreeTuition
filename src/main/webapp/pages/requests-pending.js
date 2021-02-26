@@ -53,32 +53,137 @@ function getInfo(){
        //Create 2 buttons in a collumn Resolve
        let resolve = document.createElement('td')
 
+    //    let form =  document.createElement('form')
+    //    form.action = "approve.html";
        let approve = document.createElement('button')
        approve.innerHTML = "approve";
-       approve.className = "btn";
-       resolve.append(approve);
+       approve.className = "btn"
       
        let reject = document.createElement('button')
        reject.innerHTML = "reject";
-       approve.className = "btn";
-       resolve.append(reject);
-  
-    //Append all td to tr  
-       row.append(id);
-       row.append(employee);
-       row.append(school);
-       row.append(course);
-       row.append(type);
-       row.append(price);
-       row.append(graduation);
-       row.append(receipt);
-       row.append(date);
-       row.append(resolve);
-    //Append tr to table  
-       emptyDiv.append(row);}
+       reject.className = "btn";
+
+           //Append all td to tr  
+           row.append(id);
+           row.append(employee);
+           row.append(school);
+           row.append(course);
+           row.append(type);
+           row.append(price);
+           row.append(graduation);
+           row.append(receipt);
+           row.append(date);
+           row.append(resolve);
+        //Append tr to table  
+           emptyDiv.append(row)
+//------------------------------------------------------------------------------
+//----------APPROVE btn---------------------------------------------------------
+       
+    //    approve.className = "btn";
+    //    approve.formMethod = "POST"
+
+    //    form.append(approve)
+    //    resolve.append(form);
+
+     resolve.append(approve)
+     function approveRequest(e){
+        //Stop page from refreshing
+         e.preventDefault()
+
+                  //hide buttons
+                  approve.style.display = "none"
+                  reject.style.display = "none"
+        //Create form
+         let formA = document.createElement("form")
+         formA.action = "../approve"
+         formA.method = "POST"
+
+         //Add inputs
+         let idA = document.createElement("input")
+         idA.name = "idA"
+         idA.value = r.requestId;
+         idA.type = "hidden"
+         formA.append(idA)
+
+         let emplA = document.createElement("input")
+         emplA.name = "emplA"
+         emplA.value = r.employeeId;
+         emplA.type = "hidden"
+         formA.append(emplA)
+
+         let schoolA = document.createElement("input")
+         schoolA.name = "schoolA"
+         schoolA.value = r.school;
+         schoolA.type = "hidden"
+         formA.append(schoolA)
+
+         let courseA = document.createElement("input")
+         courseA.name = "courseA"
+         courseA.value = r.course;
+         courseA.type = "hidden"
+         formA.append(courseA)
+
+         let typeA = document.createElement("input")
+         typeA.name = "typeA"
+         typeA.value = r.type;
+         typeA.type = "hidden"
+         formA.append(typeA)
+
+         let priceA = document.createElement("input")
+         priceA.name = "priceA"
+         priceA.value = r.price;
+         priceA.type = "hidden"
+         formA.append(priceA)
+         
+         let graduationA = document.createElement("input")
+         graduationA.name = "graduationA"
+         graduationA.value = r.graduation;
+         graduationA.type = "hidden"
+         formA.append(graduationA)
+         
+         let receiptA = document.createElement("input")
+         receiptA.name = "receiptA"
+         receiptA.value = r.receipt;
+         receiptA.type = "hidden"
+         formA.append(receiptA)
+         
+         let dateA = document.createElement("input")
+         dateA.name = "dateA"
+         dateA.value = r.date;
+         dateA.type = "hidden"
+         formA.append(dateA)
+    
+         let amount = document.createElement('input')
+         amount.name = "amount"
+         amount.type = "text"
+         amount.placeholder = "Amount in $"
+         formA.append(amount)
+
+         //add submition button
+         let go = document.createElement('button')
+        go.innerHTML = "submit"
+         go.className = "btn"
+         formA.append(go)
+
+         resolve.append(formA)
+
+
+    }
+    approve.addEventListener('click', approveRequest)
+      
+       let form2 =  document.createElement('form')
+       form2.action = "approve.html";
+
+
+       form2.append(reject)
+       resolve.append(form2);
+
+   
+
     
         }
     }
+}
 
     //Open my XMLHttpRequest, specifying my HTTP verb and the endpoint I would like to hit.
 
@@ -91,10 +196,14 @@ function getInfo(){
 // approve.addEventListener("click", approveRequest)
 // let reject = document.createElement('button')
  
+
 console.log("This is JS file")
 //Info will appear as soon as the web page loads. 
 //Use window's onload event listener which fires immediately after the browser loads the window
 window.onload = () => {
     getInfo()
 }
+
+// save.addEventListener('click', approveRequest)
+
 

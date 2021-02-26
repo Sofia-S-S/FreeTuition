@@ -57,7 +57,7 @@ public class Card {
 	@Column
 	private String name;
 	@Column
-	private boolean face_up;
+	private boolean faceUp;
 	@Column
 	private Date date_created;
 	
@@ -65,11 +65,11 @@ public class Card {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Card(int id, String name, boolean face_up, Date date_created) {
+	public Card(int id, String name, boolean faceUp, Date date_created) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.face_up = face_up;
+		this.faceUp = faceUp;
 		this.date_created = date_created;
 	}
 	public int getId() {
@@ -84,11 +84,11 @@ public class Card {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public boolean isFace_up() {
-		return face_up;
+	public boolean isfaceUp() {
+		return faceUp;
 	}
-	public void setFace_up(boolean face_up) {
-		this.face_up = face_up;
+	public void setfaceUp(boolean faceUp) {
+		this.faceUp = faceUp;
 	}
 	public Date getDate_created() {
 		return date_created;
@@ -101,7 +101,7 @@ public class Card {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((date_created == null) ? 0 : date_created.hashCode());
-		result = prime * result + (face_up ? 1231 : 1237);
+		result = prime * result + (faceUp ? 1231 : 1237);
 		result = prime * result + id;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
@@ -120,7 +120,7 @@ public class Card {
 				return false;
 		} else if (!date_created.equals(other.date_created))
 			return false;
-		if (face_up != other.face_up)
+		if (faceUp != other.faceUp)
 			return false;
 		if (id != other.id)
 			return false;
@@ -133,6 +133,6 @@ public class Card {
 	}
 	@Override
 	public String toString() {
-		return "Card [id=" + id + ", name=" + name + ", face_up=" + face_up + ", date_created=" + date_created + "]";
+		return "Card [id=" + id + ", name=" + name + ", faceUp=" + faceUp + ", date_created=" + date_created + "]";
 	}
 }

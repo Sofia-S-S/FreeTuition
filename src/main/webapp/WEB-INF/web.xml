@@ -1,62 +1,107 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
-  <display-name>FreeTuition</display-name>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-  </welcome-file-list>
-  <servlet>
-    <servlet-name>HelloWorldServlet</servlet-name>
-    <servlet-class>com.freetuition.controller.HelloWorldServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>HelloWorldServlet</servlet-name>
-    <url-pattern>/hello</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
-    <servlet-name>EmployeeLoginServlet</servlet-name>
-    <servlet-class>com.freetuition.controller.EmployeeLoginServlet</servlet-class>
-  </servlet>
-  
-  <servlet-mapping>
-    <servlet-name>EmployeeLoginServlet</servlet-name>
-    <url-pattern>/employee-login</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
-    <display-name>EmployeeInfo</display-name>
-    <servlet-name>EmployeeInfo</servlet-name>
-    <servlet-class>com.freetuition.controller.EmployeeInfo</servlet-class>
-  </servlet>
-  
-  <servlet-mapping>
-    <servlet-name>EmployeeInfo</servlet-name>
-    <url-pattern>/EmployeeInfo</url-pattern>
-  </servlet-mapping>
-  
-    <servlet>
-    <display-name>UpdateInfo</display-name>
-    <servlet-name>UpdateInfo</servlet-name>
-    <servlet-class>com.freetuition.controller.UpdateInfoServlet</servlet-class>
-  </servlet>
-  
-  <servlet-mapping>
-    <servlet-name>UpdateInfo</servlet-name>
-    <url-pattern>/update-info</url-pattern>
-  </servlet-mapping>
-  
-  	<servlet>
-  		<servlet-name>DispatcherServlet</servlet-name>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+	<display-name>FreeTuition</display-name>
+	<welcome-file-list>
+		<welcome-file> index.html </welcome-file>
+		<welcome-file>index.htm </welcome-file>
+		<welcome-file>index.jsp </welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+
+	<servlet>
+		<servlet-name>HelloWorldServlet</servlet-name>
+		<servlet-class>com.freetuition.controller.HelloWorldServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>HelloWorldServlet</servlet-name>
+		<url-pattern>/hello</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>EmployeeLoginServlet</servlet-name>
+		<servlet-class>com.freetuition.controller.EmployeeLoginServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>EmployeeLoginServlet</servlet-name>
+		<url-pattern>/employee-login</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<display-name>EmployeeInfo</display-name>
+		<servlet-name>EmployeeInfo</servlet-name>
+		<servlet-class>com.freetuition.controller.EmployeeInfo</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>EmployeeInfo</servlet-name>
+		<url-pattern>/EmployeeInfo</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<display-name>UpdateInfo</display-name>
+		<servlet-name>UpdateInfo</servlet-name>
+		<servlet-class>com.freetuition.controller.UpdateInfoServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>UpdateInfo</servlet-name>
+		<url-pattern>/update-info</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>DispatcherServlet</servlet-name>
 		<servlet-class>com.freetuition.controller.DispatcherServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>DispatcherServlet</servlet-name>
 		<url-pattern>/dispatcher/*</url-pattern>
 	</servlet-mapping>
-  
+
+	<servlet>
+		<servlet-name>ApproveServlet</servlet-name>
+		<servlet-class>com.freetuition.controller.ApproveServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ApproveServlet</servlet-name>
+		<url-pattern>/approve</url-pattern>
+	</servlet-mapping>
+	
+		<servlet>
+		<servlet-name>AddEmployeeServlet</servlet-name>
+		<servlet-class>com.freetuition.controller.AddEmployeeServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>AddEmployeeServlet</servlet-name>
+		<url-pattern>/add-employee</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>NewRequestServlet</servlet-name>
+		<servlet-class>com.freetuition.controller.NewRequestServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>NewRequestServlet</servlet-name>
+		<url-pattern>/new-request</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>RequestsPendingServlet</servlet-name>
+		<servlet-class>com.freetuition.controller.RequestsPendingServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>RequestsPendingServlet</servlet-name>
+		<url-pattern>/pending-requests</url-pattern>
+	</servlet-mapping>
+
+
 </web-app>

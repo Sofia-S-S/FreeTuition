@@ -1,74 +1,54 @@
 package com.freetuition.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.freetuition.dao.EmployeeDAOImpl;
+import com.freetuition.dao.RequestDAOImpl;
 import com.freetuition.exception.BusinessException;
-import com.freetuition.model.Employee;
+import com.freetuition.model.Request;
 
 /**
- * Servlet implementation class GetMyInfoServlet
+ * Servlet implementation class MyRequestsServlet
  */
-@WebServlet("/GetMyInfoServlet")
-public class GetMyInfoServlet extends HttpServlet {
+@WebServlet("/MyRequestsServlet")
+public class MyRequestsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public GetMyInfoServlet() {
+
+    public MyRequestsServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+    RequestDAOImpl repo = new RequestDAOImpl();
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		EmployeeDAOImpl dao = new EmployeeDAOImpl();
-		
-		
-		
-		
-		Integer x = (Integer) request.getSession(false).getAttribute("userId");
-		if (x!=null) {
-			System.out.println("yes");
+	response.setContentType("application/json");
 
-		System.out.println(x);
 		
+		List<Request> reqList;
 		try {
-			Employee emp = dao.getEmployeeById(x);
+			int id = (Integer) request.getSession(false).getAttribute("userId");
+			reqList = repo.getAllReqByEmployee(id);
 
-		response.setContentType("application/json");
-//		
-//		Employee emp = new Employee(1,"Jessica","Brown","West Loop","engeneer",5,"jess@west.com",875675588L,"6789 N Green St");
-//		
+		
 		ObjectMapper objectMapper = new ObjectMapper();
 		
-		final String JSON = objectMapper.writeValueAsString(emp);
+		final String JSON = objectMapper.writeValueAsString(reqList);
 		
 		response.getWriter().write(JSON);
-		
-		
 		} catch (BusinessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		} else {
-			System.out.print("no");
-		}
 	}
-
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);

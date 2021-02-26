@@ -6,6 +6,7 @@ html {
 }
 body {
   font-family: "Verdana", sans-serif;
+  text-align: center;
 }
 
 header {
@@ -21,15 +22,22 @@ footer {
   background-color: #f1f1f1;
   border-top-style: solid;
 }
+form {
+  display: inline-block;
+}
 input {
   border-radius: 1em;
+  text-align: center;
+  padding: 1em;
+  margin: 1em;
+  display: block;
 }
 
 table {
   border-collapse: collapse;
 }
 table td {
-  border: 2px solid black; 
+  border: 2px solid black;
 }
 table tr:first-child td {
   border-top: 0;

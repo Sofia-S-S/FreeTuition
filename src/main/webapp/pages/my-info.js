@@ -17,51 +17,83 @@ function getInfo(){
             console.log(employee)
             let emptyDiv = document.getElementById('emptyDiv')
          
+
+            // //Create brakes
+            // let br = document.createElement("br")
+            // let fooBar = document.createElement("fooBar")
+            // fooBar.appendChild(br)
+
+
             //Create new input for each field
             //Get value from object we got from JSON
             //Append our new input to empty div        
                 let firstName = document.createElement('input')
-                firstName.name = "firstName";
+                firstName.name = "firstName"; // Name we set to retrive field afre submition
                 firstName.type = "text"
-                firstName.value = employee.firstName;
-                firstName.placeholder = employee.firstName;
+                firstName.value = employee.firstName; // 
+                firstName.placeholder = "First Name"; //text we see in empty input
 
                 emptyDiv.append(firstName);
 
                 let lastName = document.createElement('input')
-                firstName.name = "lastName";
+                lastName.name = "lastName";
                 lastName.type = "text"
                 lastName.value = employee.lastName;
-                firstName.placeholder = employee.lastName;
+                lastName.placeholder = "Last Name";
 
                 emptyDiv.append(lastName);
-
+            
                 let company = document.createElement('input')
                 company.name = "company";
                 company.type = "text"
                 company.value = employee.company;
+                company.placeholder = "Company Name"
                 emptyDiv.append(company)
 
                 let position = document.createElement('input')
+                position.name = "position";
                 position.type = "text"
                 position.value = employee.position;
+                position.placeholder = "Position"
                 emptyDiv.append(position)
 
                 let email = document.createElement('input')
+                email.name = "email";
                 email.type = "text"
                 email.value = employee.email;
+                email.placeholder = "e-mail"
                 emptyDiv.append(email)
 
                 let contact = document.createElement('input')
+                contact.name = "contact"
                 contact.type = "text"
                 contact.value = employee.contact;
+                contact.placeholder = "Phone Number"
                 emptyDiv.append(contact)
 
                 let address = document.createElement('input')
+                address.name = "address"
                 address.type = "text"
                 address.value = employee.address;
+                address.placeholder = "Address"
                 emptyDiv.append(address)
+
+                let id = document.createElement('input')
+                id.name = "id"
+                id.type = "hidden"
+                id.value = employee.id;
+                emptyDiv.append(id)
              
+                let managerId = document.createElement('input')
+                managerId.name = "managerId"
+                managerId.type = "hidden"
+                managerId.value = employee.managerId;
+                emptyDiv.append(managerId)
+
+                let btn = document.createElement('button')
+                btn.className = "btn"
+                btn.innerHTML = "Save Changes"
+                emptyDiv.append(btn)
             
         }
     }
@@ -72,61 +104,61 @@ function getInfo(){
     xhr.send() //readyState 2
 }
  
- function updateInfo(e){
-    //Stop page from refreshing
-     e.preventDefault()
-    //We need to grab the element whose value we're trying to get
+//  function updateInfo(e){
+//     //Stop page from refreshing
+//      e.preventDefault()
+//     //We need to grab the element whose value we're trying to get
 
-    // console.log(document.querySelectorAll("input[value=firstName]"));
+//     // console.log(document.querySelectorAll("input[value=firstName]"));
 
-     let inputs = document.getElementsByTagName('input')
-     console.log(inputs)
+//      let inputs = document.getElementsByTagName('input')
+//      console.log(inputs)
 
-    let firstName = inputs[0].value
-    console.log(firstName)   
+//     let firstName = inputs[0].value
+//     console.log(firstName)   
 
-    let lastName = inputs[1].value
-    console.log(lastName) 
+//     let lastName = inputs[1].value
+//     console.log(lastName) 
 
-    let company = inputs[2].value
-    console.log(company) 
+//     let company = inputs[2].value
+//     console.log(company) 
 
-    let position = inputs[3].value
-    console.log(position) 
+//     let position = inputs[3].value
+//     console.log(position) 
 
-    let email = inputs[4].value
-    console.log(email) 
+//     let email = inputs[4].value
+//     console.log(email) 
 
-    let contact = inputs[5].value
-    console.log(contact) 
+//     let contact = inputs[5].value
+//     console.log(contact) 
 
-    let address = inputs[6].value
-    console.log(address) 
+//     let address = inputs[6].value
+//     console.log(address) 
 
 
 
-// create a JSON object
-const json = {
-    "firstName": inputs[0].value,
-    "lastName": inputs[1].value
-};
+// // create a JSON object
+// const json = {
+//     "firstName": inputs[0].value,
+//     "lastName": inputs[1].value
+// };
 
-// create new request
-const xhr = new XMLHttpRequest();
+// // create new request
+// const xhr = new XMLHttpRequest();
 
-// open request
-xhr.open('POST', 'http://localhost:8080/FreeTuition/update-info');
+// // open request
+// xhr.open('POST', 'http://localhost:8080/FreeTuition/update-info');
 
-// set `Content-Type` header
-xhr.setRequestHeader('Content-Type', 'application/json');
+// // set `Content-Type` header
+// xhr.setRequestHeader('Content-Type', 'application/json');
 
-// send rquest with JSON payload
-xhr.send(JSON.stringify(json));
+// // send rquest with JSON payload
+// xhr.send(JSON.stringify(json));
 
-console.log(JSON)
-console.log(json)
+// console.log(JSON)
+// console.log(json)
 
- }
+//  }
 
 
 
@@ -136,7 +168,7 @@ window.onload = () => {
     getInfo()
 }
 
-//add listener to save updates button
-let save = document.getElementById('save')
-save.addEventListener('click', updateInfo)
+// //add listener to save updates button
+// let save = document.getElementById('save')
+// save.addEventListener('click', updateInfo)
 

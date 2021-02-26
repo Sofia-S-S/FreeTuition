@@ -4,16 +4,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Information</title>
+    <title>My Account</title>
+    <link rel="stylesheet" href="../styles/style.css"></link>
 </head>
 <body>
-    <h1>Personal Information - you can update</h1>
+    <div class="contentWrapper">
+		<header>
+			<h1>FREE TUITION</h1>
+			<h5>Tuition Reimbursement Management System</h5>
+		</header>
+    <h1>My Account</h1>
+    <!-- Will post updates when press button and triger Update info Servlet -->
        <form action="../update-info" method="POST" id="emptyDiv"> 
+        <button class="btn" onclick="goBack()">Go Back</button>
 <!-- We will populate all information here -->
 
-        <button type="submit" id="save">Save - send req to Servlet</button>
-        <button>Submit form</button>
+        <!-- <input type="submit" value="Submit" id="save">Save - send req to Servlet</button> -->
     </form>
+   
+</div>
+<footer> &#169; 2021, Sofka-S-S</footer>
     <script src="./my-info.js"></script>
+    <script>
+function goBack() {
+  window.history.back();
+}
+</script>
 </body>
 </html>
+

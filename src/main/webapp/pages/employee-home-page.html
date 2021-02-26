@@ -2,24 +2,41 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>welcome</title>
+<title>Employee Menu</title>
+    <link rel="stylesheet" href="styles/style.css"></link>
 </head>
 <body>
-<div id="placeHere"> </div>
-	<h1>Employee Home Page</h1>
-	<h2> Welcome 
-	</h2>
-		<h2>Your id is 
-	</h2>
-	<div id="employeeName">
-	</div>
-<div id="employeeId"> `Your login is: ${login}` <!-- retrieving parameter from forwarding request -->
-and  Your id is:
+	<div class="contentWrapper">
+		<header>
+			<h1>FREE TUITION</h1>
+			<h5>Tuition Reimbursement Management System</h5>
+		</header>
 
-	`${employeeId}` <!-- retrieving parameter that we retrieved from response and passed in forwarded request -->
+		<h1>EMPLOYEE MENU</h1>
+		<h1 id="yourId"></h1>
+
+
+
+				<form action="pages/my-info.html">
+					<button class="hugeBtn">My account</button>
+				</form>
+
+				<br>
 	
+				<form action="pages/new-request.html">
+					<button class="hugeBtn">New Request</button>
+				</form>
+
+				<br>
 	
+				<form action="pages/my-requests.html">
+					<button class="hugeBtn">My Requests</button>
+				</form>
+		
+	
+
+
 	</div>
-	<script src="./employee.js"></script>
+	<footer> &#169; 2021, Sofka-S-S</footer>
 </body>
 </html>

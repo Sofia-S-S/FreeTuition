@@ -1,15 +1,40 @@
 package com.freetuition.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+@Entity
+
+@Table(name = "employee", schema="freetuition")
+
 public class Employee {
 	
+	@Id
+	@Column (name="employeeId") //give name to my sequence for column id
+	@GeneratedValue(generator = "employee_id_seq", strategy = GenerationType.AUTO)
+	@SequenceGenerator(allocationSize = 1, name = "employee_id_seq", sequenceName = "employee_id_seq")
 	private int id;
+	
+	@Column
 	private String firstName;
+	@Column
 	private String lastName;
+	@Column
 	private String company;
+	@Column
 	private String position;
+	@Column
 	private int managerId;
+	@Column
 	private String email;
+	@Column
 	private long contact;
+	@Column
 	private String address;
 	
 	public Employee() {}
