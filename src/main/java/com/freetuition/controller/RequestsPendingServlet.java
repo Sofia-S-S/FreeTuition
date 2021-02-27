@@ -17,7 +17,6 @@ import com.freetuition.dao.RequestDAOImpl;
 import com.freetuition.exception.BusinessException;
 import com.freetuition.model.Request;
 
-
 /**
  * Servlet implementation class RequestsPendingServlet
  */
@@ -25,37 +24,40 @@ import com.freetuition.model.Request;
 public class RequestsPendingServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public RequestsPendingServlet() {
-        super();
-    }
-    
-    RequestDAOImpl repo = new RequestDAOImpl();
+	public RequestsPendingServlet() {
+		super();
+	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	RequestDAOImpl repo = new RequestDAOImpl();
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		response.setContentType("application/json");
-		
+
 //		ArrayList<Request> reqList = new ArrayList<> (Arrays.asList(new Request(1,100,"Northwestern","Web-Dev 101","full-time", 600.00, "pending", new Date(),null,new Date()),
 //																	new Request(2,200,"Northwestern","Web-Dev 102","full-time", 467.00, "pending", new Date(),null,new Date()),
 //																	new Request(3,300,"Revature","Java","full-time", 599.00, "pending", new Date(),null,new Date())
 //																	));
-		
-		List<Request> reqList;
-		try {
-			reqList = repo.findAll("pending");
 
-		
-		ObjectMapper objectMapper = new ObjectMapper();
-		
-		final String JSON = objectMapper.writeValueAsString(reqList);
-		
-		response.getWriter().write(JSON);
+		try {
+			int manId= (int) request.getSession(false).getAttribute("userId");
+			
+			List<Request> reqList = repo.getAllReqsForManager(manId, "pending");
+
+			ObjectMapper objectMapper = new ObjectMapper();
+
+			final String JSON = objectMapper.writeValueAsString(reqList);
+
+			response.getWriter().write(JSON);
 		} catch (BusinessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

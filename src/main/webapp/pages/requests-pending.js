@@ -27,7 +27,7 @@ function getInfo(){
        id.innerHTML = r.requestId;
 
        let employee = document.createElement('td')
-       employee.innerHTML = r.employeeId;
+       employee.innerHTML = r.employee.firstName+" "+r.employee.lastName;
 
        let school = document.createElement('td')
        school.innerHTML = r.school;
@@ -35,20 +35,11 @@ function getInfo(){
        let course = document.createElement('td')
        course.innerHTML = r.course;
 
-       let type = document.createElement('td')
-       type.innerHTML = r.type;
-
        let price = document.createElement('td')
        price.innerHTML = r.price;
 
-       let graduation = document.createElement('td')
-       graduation.innerHTML = r.graduation;
-
        let receipt = document.createElement('td')
        receipt.innerHTML = r.receipt;
-
-       let date = document.createElement('td')
-       date.innerHTML = r.date;
 
        //Create 2 buttons in a collumn Resolve
        let resolve = document.createElement('td')
@@ -68,22 +59,13 @@ function getInfo(){
            row.append(employee);
            row.append(school);
            row.append(course);
-           row.append(type);
            row.append(price);
-           row.append(graduation);
            row.append(receipt);
-           row.append(date);
            row.append(resolve);
         //Append tr to table  
            emptyDiv.append(row)
 //------------------------------------------------------------------------------
 //----------APPROVE btn---------------------------------------------------------
-       
-    //    approve.className = "btn";
-    //    approve.formMethod = "POST"
-
-    //    form.append(approve)
-    //    resolve.append(form);
 
      resolve.append(approve)
      function approveRequest(e){
@@ -107,7 +89,7 @@ function getInfo(){
 
          let emplA = document.createElement("input")
          emplA.name = "emplA"
-         emplA.value = r.employeeId;
+         emplA.value = r.employee.id;
          emplA.type = "hidden"
          formA.append(emplA)
 
@@ -123,23 +105,11 @@ function getInfo(){
          courseA.type = "hidden"
          formA.append(courseA)
 
-         let typeA = document.createElement("input")
-         typeA.name = "typeA"
-         typeA.value = r.type;
-         typeA.type = "hidden"
-         formA.append(typeA)
-
          let priceA = document.createElement("input")
          priceA.name = "priceA"
          priceA.value = r.price;
          priceA.type = "hidden"
          formA.append(priceA)
-         
-         let graduationA = document.createElement("input")
-         graduationA.name = "graduationA"
-         graduationA.value = r.graduation;
-         graduationA.type = "hidden"
-         formA.append(graduationA)
          
          let receiptA = document.createElement("input")
          receiptA.name = "receiptA"
@@ -147,17 +117,11 @@ function getInfo(){
          receiptA.type = "hidden"
          formA.append(receiptA)
          
-         let dateA = document.createElement("input")
-         dateA.name = "dateA"
-         dateA.value = r.date;
-         dateA.type = "hidden"
-         formA.append(dateA)
-    
-         let amount = document.createElement('input')
-         amount.name = "amount"
-         amount.type = "text"
-         amount.placeholder = "Amount in $"
-         formA.append(amount)
+         let comments = document.createElement('input')
+         comments.name = "comments"
+         comments.type = "text"
+         comments.placeholder = "comments"
+         formA.append(comments)
 
          //add submition button
          let go = document.createElement('button')
@@ -166,18 +130,80 @@ function getInfo(){
          formA.append(go)
 
          resolve.append(formA)
-
-
     }
+
+    //------------------------------------------------------------------------------
+//----------REJECT btn---------------------------------------------------------
+
+resolve.append(reject)
+function rejectRequest(e){
+   //Stop page from refreshing
+    e.preventDefault()
+
+             //hide buttons
+             approve.style.display = "none"
+             reject.style.display = "none"
+   //Create form
+    let formA = document.createElement("form")
+    formA.action = "../reject"
+    formA.method = "POST"
+
+    //Add inputs
+    let idA = document.createElement("input")
+    idA.name = "idA"
+    idA.value = r.requestId;
+    idA.type = "hidden"
+    formA.append(idA)
+
+    let emplA = document.createElement("input")
+    emplA.name = "emplA"
+    emplA.value = r.employee.id;
+    emplA.type = "hidden"
+    formA.append(emplA)
+
+    let schoolA = document.createElement("input")
+    schoolA.name = "schoolA"
+    schoolA.value = r.school;
+    schoolA.type = "hidden"
+    formA.append(schoolA)
+
+    let courseA = document.createElement("input")
+    courseA.name = "courseA"
+    courseA.value = r.course;
+    courseA.type = "hidden"
+    formA.append(courseA)
+
+    let priceA = document.createElement("input")
+    priceA.name = "priceA"
+    priceA.value = r.price;
+    priceA.type = "hidden"
+    formA.append(priceA)
+    
+    let receiptA = document.createElement("input")
+    receiptA.name = "receiptA"
+    receiptA.value = r.receipt;
+    receiptA.type = "hidden"
+    formA.append(receiptA)
+    
+    let comments = document.createElement('input')
+    comments.name = "comments"
+    comments.type = "text"
+    comments.placeholder = "comments"
+    formA.append(comments)
+
+    //add submition button
+    let go = document.createElement('button')
+    go.innerHTML = "submit"
+    go.className = "btn"
+    formA.append(go)
+
+    resolve.append(formA)
+
+}
+
+    //Add event listeners for our buttons
     approve.addEventListener('click', approveRequest)
-      
-       let form2 =  document.createElement('form')
-       form2.action = "approve.html";
-
-
-       form2.append(reject)
-       resolve.append(form2);
-
+    reject.addEventListener('click', rejectRequest)
    
 
     
@@ -190,11 +216,7 @@ function getInfo(){
     xhr.open('GET', 'http://localhost:8080/FreeTuition/RequestsPendingServlet') //readyState 1
     xhr.send() //readyState 2
 }
-// function approveRequest(){
-//     console.log("Replace this with function")
-// }
-// approve.addEventListener("click", approveRequest)
-// let reject = document.createElement('button')
+
  
 
 console.log("This is JS file")
@@ -204,6 +226,5 @@ window.onload = () => {
     getInfo()
 }
 
-// save.addEventListener('click', approveRequest)
 
 

@@ -13,14 +13,6 @@
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
 
-	<servlet>
-		<servlet-name>HelloWorldServlet</servlet-name>
-		<servlet-class>com.freetuition.controller.HelloWorldServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>HelloWorldServlet</servlet-name>
-		<url-pattern>/hello</url-pattern>
-	</servlet-mapping>
 
 	<servlet>
 		<servlet-name>EmployeeLoginServlet</servlet-name>
@@ -31,6 +23,7 @@
 		<servlet-name>EmployeeLoginServlet</servlet-name>
 		<url-pattern>/employee-login</url-pattern>
 	</servlet-mapping>
+
 
 	<servlet>
 		<display-name>EmployeeInfo</display-name>
@@ -43,6 +36,7 @@
 		<url-pattern>/EmployeeInfo</url-pattern>
 	</servlet-mapping>
 
+
 	<servlet>
 		<display-name>UpdateInfo</display-name>
 		<servlet-name>UpdateInfo</servlet-name>
@@ -54,14 +48,6 @@
 		<url-pattern>/update-info</url-pattern>
 	</servlet-mapping>
 
-	<servlet>
-		<servlet-name>DispatcherServlet</servlet-name>
-		<servlet-class>com.freetuition.controller.DispatcherServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>DispatcherServlet</servlet-name>
-		<url-pattern>/dispatcher/*</url-pattern>
-	</servlet-mapping>
 
 	<servlet>
 		<servlet-name>ApproveServlet</servlet-name>
@@ -71,6 +57,17 @@
 	<servlet-mapping>
 		<servlet-name>ApproveServlet</servlet-name>
 		<url-pattern>/approve</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>RejectServlet</servlet-name>
+		<servlet-class>com.freetuition.controller.RejectServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>RejectServlet</servlet-name>
+		<url-pattern>/reject</url-pattern>
 	</servlet-mapping>
 	
 		<servlet>
@@ -102,6 +99,28 @@
 		<servlet-name>RequestsPendingServlet</servlet-name>
 		<url-pattern>/pending-requests</url-pattern>
 	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>ManagerLoginServlet</servlet-name>
+		<servlet-class>com.freetuition.controller.ManagerLoginServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ManagerLoginServlet</servlet-name>
+		<url-pattern>/manager-login</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>OneEmployeeRequestsServlet</servlet-name>
+		<servlet-class>com.freetuition.controller.OneEmployeeRequestsServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>OneEmployeeRequestsServlet</servlet-name>
+		<url-pattern>/one-employee-requests</url-pattern>
+	</servlet-mapping>
+	
 
 
 </web-app>

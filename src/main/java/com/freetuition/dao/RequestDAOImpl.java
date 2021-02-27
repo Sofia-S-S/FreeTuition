@@ -13,7 +13,9 @@ import com.freetuition.util.HibernateSessionFactory;
 
 public class RequestDAOImpl {
 	
-	public List<Request> findAll(String status) throws BusinessException {
+	// ---------------------- All requests by Status
+	
+	public List<Request> getAllReqsForManager(int manId , String status) throws BusinessException {
 		List<Request> reqs = new ArrayList<>();
 		
 		Session s = null;
@@ -28,7 +30,7 @@ public class RequestDAOImpl {
 			 * than the entities in the DB. It provides a more object-oriented
 			 * approach to data persistence.
 			 */
-			reqs = s.createQuery("FROM Request r WHERE r.status = :status", Request.class).setParameter("status",status).getResultList();
+			reqs = s.createQuery("FROM Request r WHERE r.manager.id = :manId AND r.status = :status", Request.class).setParameter("manId", manId).setParameter("status",status).getResultList();
 			tx.commit();
 		}catch(HibernateException e) {
 			e.printStackTrace();
@@ -40,6 +42,8 @@ public class RequestDAOImpl {
 		
 		return reqs;
 	}
+	
+	//-------------- All Requests from one Employee ----------------------------------------
 	
 	public List<Request> getAllReqByEmployee(int employee) throws BusinessException {
 		List<Request> reqs = new ArrayList<>();
@@ -67,6 +71,35 @@ public class RequestDAOImpl {
 		
 		return reqs;
 	}
+	//-------------- All Requests from one Employee By Manager ----------------------------------------
+	
+	public List<Request> getAllReqByEmployee(int employeeId, int managerId) throws BusinessException {
+		List<Request> reqs = new ArrayList<>();
+		
+		Session s = null;
+		Transaction tx = null;
+		
+		try {
+			s = HibernateSessionFactory.getSession();
+			tx = s.beginTransaction();
+			/*
+			 * Hibernate has its own query language called "HQL" - Hibernate
+			 * Query Language. HQL allows us to emphasize our Java models rather
+			 * than the entities in the DB. It provides a more object-oriented
+			 * approach to data persistence.
+			 */
+			reqs = s.createQuery("FROM Request r WHERE r.employee.id = :employeeId AND r.manager.id = :managerId", Request.class).setParameter("employeeId",employeeId).setParameter("managerId", managerId).getResultList();
+			tx.commit();
+		}catch(HibernateException e) {
+			e.printStackTrace();
+			tx.rollback();
+		}finally {
+			s.close();
+		}
+		
+		return reqs;
+	}
+	//-------------------------Add Request
 	
 	public void insert(Request r) {
 		//All of our work is done within the context of a Hibernate session
@@ -95,6 +128,8 @@ public class RequestDAOImpl {
 			s.close();
 		}
 	}
+	
+	//---------------------Approve Request (Status = > Approved)
 	
 	public void approveRequest(Request req) {
 		
@@ -142,5 +177,8 @@ public class RequestDAOImpl {
 		}
 		return c;
 	}
+	
+	//-----------------------------------------------------
+	
 
 }

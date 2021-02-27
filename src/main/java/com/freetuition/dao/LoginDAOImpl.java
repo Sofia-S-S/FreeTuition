@@ -10,8 +10,10 @@ import com.freetuition.model.Login;
 import com.freetuition.util.HibernateSessionFactory;
 
 public class LoginDAOImpl {
+	
+	
 	// --------------------------------------Customer Log In
-	// -------------------------------------
+
 
 	
 
@@ -40,8 +42,10 @@ public class LoginDAOImpl {
 			
 			tx.commit();
 		}catch(HibernateException e) {
-			e.printStackTrace();
+			System.out.print(e);
+//			e.printStackTrace();
 			tx.rollback();
+			throw new BusinessException ("Wrong Login or Password");
 		}finally {
 			s.close();
 		}

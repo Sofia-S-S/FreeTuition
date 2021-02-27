@@ -69,7 +69,7 @@ function getInfo(){
 
     //Open my XMLHttpRequest, specifying my HTTP verb and the endpoint I would like to hit.
 
-    xhr.open('GET', 'http://localhost:8080/FreeTuition/MyRequestsServlet') //readyState 1
+    xhr.open('GET', 'http://localhost:8080/FreeTuition/OneEmployeeRequestsServlet') //readyState 1
     xhr.send() //readyState 2
 }
 

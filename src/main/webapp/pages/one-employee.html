@@ -2,8 +2,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Manager login Page</title>
-<link rel="stylesheet" href="styles/style.css"></link>
+<title>Single Employee Requests</title>
+<link rel="stylesheet" href="../styles/style.css"></link>
 </head>
 <body>
 	<div class="contentWrapper">
@@ -12,10 +12,10 @@
 			<h5>Tuition Reimbursement Management System</h5>
 		</header>
 
-	<h2> Log in with your credentials:</h2>
-	<form action="manager-login" method="POST">
-	<input type="text" name="login" placeholder="Login"/>
-	<input type="text" name="password" placeholder="Password" />
+	<h2> Search for an employee's requests:</h2>
+	<form action="../one-employee-requests" method="POST">
+	<input type="text" name="firstName" placeholder="First Name"/>
+	<input type="text" name="lastName" placeholder="Last Name" />
 	<button class="btn" type="submit" value="Submit">Submit</button>
 	</form>
 	

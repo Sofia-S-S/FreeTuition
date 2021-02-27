@@ -1,20 +1,13 @@
 package com.freetuition.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.List;
-
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import com.freetuition.dbutil.PostresqlConnection;
+
 import com.freetuition.exception.BusinessException;
 import com.freetuition.model.Employee;
 import com.freetuition.model.Login;
-import com.freetuition.model.Request;
 import com.freetuition.util.HibernateSessionFactory;
 
 public class EmployeeDAOImpl {
@@ -82,7 +75,8 @@ public class EmployeeDAOImpl {
 			s.close();
 		}
 	}
-	// Get Employee // Get his Manager Name
+	
+	// Get Employee by Id
 	public Employee getEmployeeById(int id) throws BusinessException {
 		
 		Employee employee= null;
@@ -112,30 +106,37 @@ public class EmployeeDAOImpl {
 		return employee;
 	}
 	
+	// Get Employee by Id
+	public Employee getEmployeeByName(String firstName, String lastName) throws BusinessException {
+		
+		Employee employee= null;
 	
-	//Create Request with status "open"
-	public boolean createRequest() {
-		return false;	
+		
+		Session s = null;
+		Transaction tx = null;
+		
+		try {
+			s = HibernateSessionFactory.getSession();
+			tx = s.beginTransaction();
+			//-------------------------------------
+			
+
+			employee = s.createQuery("FROM Employee WHERE firstName = :firstName AND lastName = :lastName ",Employee.class).setParameter("firstName", firstName).setParameter("lastName", lastName).getSingleResult();
+			
+
+			//-------------------------------------
+			
+			tx.commit();
+		}catch(HibernateException e) {
+			e.printStackTrace();
+			tx.rollback();
+		}finally {
+			s.close();
+		}
+		return employee;
 	}
 	
-	//Create ReimbursementApproved //Update status of Request to "approved"
-	public boolean approveRequest() {
-		return false;	
-	}
 	
-	//Create ReimbursementRejected //Update status of Request to "rejected"
-	public boolean rejectRequest() {
-		return false;	
-	}
-	
-	//Get All Requests join with Employee (Sort by employee or manager and status)
-	public List<Request> getAllRequests() {
-		return null;	
-	}
-	
-	public Request getRequestById(int requestId) {
-		return null;	
-	}
 	
 	
 }

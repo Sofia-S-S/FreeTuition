@@ -1,7 +1,6 @@
 package com.freetuition.controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,18 +11,17 @@ import com.freetuition.dao.RequestDAOImpl;
 import com.freetuition.model.Employee;
 import com.freetuition.model.Request;
 
-
 /**
- * Servlet implementation class RequestApproveServlet
+ * Servlet implementation class RejectServlet
  */
-@WebServlet("/RequestApproveServlet")
-public class ApproveServlet extends HttpServlet {
+@WebServlet("/RejectServlet")
+public class RejectServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ApproveServlet() {
+    public RejectServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,8 +31,7 @@ public class ApproveServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -49,27 +46,24 @@ public class ApproveServlet extends HttpServlet {
        	String school = request.getParameter("schoolA");
        	String course = request.getParameter("courseA");
        	double price = Double.parseDouble(request.getParameter("priceA"));
-       	String status = "approved";
+       	String status = "rejected";
        	String receipt = null;
 
        	
-	
-       	//WORKING CODE UNCOMMENT LATER
        	int manId = (Integer) request.getSession(false).getAttribute("userId");
 
        	String comments = request.getParameter("comments");
        	
        	Employee employee = new Employee(emplId,"x","x","X","x",1,"x",1,"x");
        	Employee manager = new Employee(manId,"x","x","X","x",1,"x",1,"x");
-       	
-       	
+       	      	
        	Request req = new Request(id,employee,school,course,price,status,receipt,manager,comments);
-
       	
        RequestDAOImpl dao = new RequestDAOImpl();
        dao.approveRequest(req);
       
        response.sendRedirect("pages/requests-pending.html");
 	}
+
 
 }

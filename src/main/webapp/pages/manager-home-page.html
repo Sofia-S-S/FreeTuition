@@ -1,0 +1,50 @@
+<!-- -A Manager can approve/deny pending reimbursement requests from the employees they manage
+-A Manager can view all pending requests from the employees they manage
+-A Manager can view images of the receipts from all reimbursement requests
+-A Manager can view all resolved requests from all employees and see which manager resolved it
+-A Manager can view all Employees and their managers
+-A Manager can view reimbursement requests from a single Employee whom they manage -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Employee Menu</title>
+<link rel="stylesheet" href="styles/style.css"></link>
+</head>
+<body>
+	<div class="contentWrapper">
+		<header>
+			<h1>FREE TUITION</h1>
+			<h5>Tuition Reimbursement Management System</h5>
+		</header>
+
+		<h1>EMPLOYEE MENU</h1>
+		<h1 id="yourId"></h1>
+
+
+		<!-- -A Manager can view reimbursement requests from a single Employee whom they manage -->
+		<form action="pages/one-employee.html">
+			<button class="hugeBtn">Single Employee Requests</button>
+		</form>
+
+		<br>
+		<!--  -A Manager can approve/deny pending reimbursement requests from the employees they manage
+		-A Manager can view all pending requests from the employees they manage -->
+		<form action="pages/requests-pending.html">
+			<button class="hugeBtn">Resolve Requests</button>
+		</form>
+
+		<br>
+
+		<form action="pages/my-requests.html">
+			<button class="hugeBtn">My Requests</button>
+		</form>
+
+
+
+
+	</div>
+	<footer> &#169; 2021, Sofka-S-S</footer>
+</body>
+</html>
