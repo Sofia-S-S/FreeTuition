@@ -1,7 +1,6 @@
 package com.freetuition.controller;
 
 import java.io.IOException;
-import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,8 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.freetuition.dao.EmployeeDAOImpl;
 import com.freetuition.dao.RequestDAOImpl;
 import com.freetuition.exception.BusinessException;
+import com.freetuition.model.Employee;
 import com.freetuition.model.Request;
 
 /**
@@ -53,24 +54,30 @@ public class NewRequestServlet extends HttpServlet {
 		
 		String school = request.getParameter("school");
 		String course = request.getParameter("course");
-		String type = request.getParameter("type");
 		double price = Double.parseDouble(request.getParameter("price"));
-		String status = "pending";
-//		int managerId = Integer.parseInt(request.getParameter("managerId"));
-//		Date graduation = null;
-//		String receipt = null;
-//		Date date = null;
-		// For Login
-
-
 		
-		Request req = new Request(7, employeeId, school, course, type,price, status,new Date(),null, new Date());
+		
+		//Get employee to Find manager 
+		EmployeeDAOImpl daoE  = new EmployeeDAOImpl();
+		try {
+			Employee emp = daoE.getEmployeeById(employeeId);
+			int managerId = emp.getManagerId();
+		
+
+		Employee employee = new Employee(employeeId,"x","x","x","x",1,"x",1,"x");
+		Employee manager = new Employee(managerId,"x","x","x","x",1,"x",1,"x");
+		
+		Request req = new Request(1, employee, school, course, price,"pending",null, manager, "");
 		System.out.println(req);
 
 
 		RequestDAOImpl dao = new RequestDAOImpl();
 
 		dao.insert(req);
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

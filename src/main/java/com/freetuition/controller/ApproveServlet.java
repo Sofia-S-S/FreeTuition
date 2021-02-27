@@ -9,9 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.freetuition.dao.RequestDAOImpl;
-import com.freetuition.model.Request;
-import com.freetuition.model.RequestApproved;
 
 /**
  * Servlet implementation class RequestApproveServlet
@@ -61,14 +58,14 @@ public class ApproveServlet extends HttpServlet {
        	int manager = 2;
        	double amount = Double.parseDouble(request.getParameter("amount"));
        	
-       	
-       	Request req = new Request(id,employee,school,course,type,price,status,graduation,receipt,date);
-       	RequestApproved approve = new RequestApproved(id,amount,manager,new Date());
-       	
-       	
-       RequestDAOImpl dao = new RequestDAOImpl();
-       dao.approveRequest(req, approve);
-       
+//       	
+//       	Request req = new Request(id,employee,school,course,type,price,status,graduation,receipt,date);
+//       	RequestApproved approve = new RequestApproved(id,amount,manager,new Date());
+//       	
+//       	
+//       RequestDAOImpl dao = new RequestDAOImpl();
+//       dao.approveRequest(req, approve);
+//       
        response.sendRedirect("pages/requests-pending.html");
 	}
 

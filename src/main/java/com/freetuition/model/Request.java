@@ -1,7 +1,5 @@
 package com.freetuition.model;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +9,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
 
 
 //@Entity marks this class as an entity, 
@@ -36,45 +33,49 @@ public class Request {
 	@GeneratedValue(generator = "request_id_seq", strategy = GenerationType.AUTO)
 	@SequenceGenerator(allocationSize = 1, name = "request_id_seq", sequenceName = "request_id_seq")
 	private int requestId;
-	@Column
-	private int employeeId;
+	
+	//One to one relationship
+	@JoinColumn
+	@OneToOne  //eagarly fetch - hib-te automaticly join, no need to write query
+	private Employee employee;
+	
 	@Column
 	private String school;
+	
 	@Column
 	private String course;
-	@Column
-	private String type;
+	
 	@Column
 	private double price;
+	
 	@Column
 	private String status;
-	@Column
-	private Date graduation;
+	
 	@Column
 	private String receipt;
+	
+	//One to one relationship
+	@JoinColumn
+	@OneToOne  //eagarly fetch - hib-te automaticly join, no need to write query
+	private Employee manager;
+	
 	@Column
-	private Date date;
-//	//--------------------------------------------------------------------
-//	//One to one relationship
-//	@JoinColumn
-//	@OneToOne  //eagarly fetch - hib-te automaticly join, no need to write query
-//	private RequestApproved requestA;
+	private String comments;
 	
 	public Request( ) {}
 
-	public Request(int requestId, int employeeId, String school, String course, String type, double price,
-			String status, Date graduation, String receipt, Date date) {
+	public Request(int requestId, Employee employee, String school, String course, double price, String status,
+			String receipt, Employee manager, String comments) {
 		super();
 		this.requestId = requestId;
-		this.employeeId = employeeId;
+		this.employee = employee;
 		this.school = school;
 		this.course = course;
-		this.type = type;
 		this.price = price;
 		this.status = status;
-		this.graduation = graduation;
 		this.receipt = receipt;
-		this.date = date;
+		this.manager = manager;
+		this.comments = comments;
 	}
 
 	public int getRequestId() {
@@ -85,12 +86,12 @@ public class Request {
 		this.requestId = requestId;
 	}
 
-	public int getEmployeeId() {
-		return employeeId;
+	public Employee getEmployee() {
+		return employee;
 	}
 
-	public void setEmployeeId(int employeeId) {
-		this.employeeId = employeeId;
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
 
 	public String getSchool() {
@@ -109,14 +110,6 @@ public class Request {
 		this.course = course;
 	}
 
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
 	public double getPrice() {
 		return price;
 	}
@@ -133,14 +126,6 @@ public class Request {
 		this.status = status;
 	}
 
-	public Date getGraduation() {
-		return graduation;
-	}
-
-	public void setGraduation(Date graduation) {
-		this.graduation = graduation;
-	}
-
 	public String getReceipt() {
 		return receipt;
 	}
@@ -149,22 +134,30 @@ public class Request {
 		this.receipt = receipt;
 	}
 
-	public Date getDate() {
-		return date;
+	public Employee getManager() {
+		return manager;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setManager(Employee manager) {
+		this.manager = manager;
+	}
+
+	public String getComments() {
+		return comments;
+	}
+
+	public void setComments(String comments) {
+		this.comments = comments;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((comments == null) ? 0 : comments.hashCode());
 		result = prime * result + ((course == null) ? 0 : course.hashCode());
-		result = prime * result + ((date == null) ? 0 : date.hashCode());
-		result = prime * result + employeeId;
-		result = prime * result + ((graduation == null) ? 0 : graduation.hashCode());
+		result = prime * result + ((employee == null) ? 0 : employee.hashCode());
+		result = prime * result + ((manager == null) ? 0 : manager.hashCode());
 		long temp;
 		temp = Double.doubleToLongBits(price);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
@@ -172,7 +165,6 @@ public class Request {
 		result = prime * result + requestId;
 		result = prime * result + ((school == null) ? 0 : school.hashCode());
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
-		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		return result;
 	}
 
@@ -185,22 +177,25 @@ public class Request {
 		if (getClass() != obj.getClass())
 			return false;
 		Request other = (Request) obj;
+		if (comments == null) {
+			if (other.comments != null)
+				return false;
+		} else if (!comments.equals(other.comments))
+			return false;
 		if (course == null) {
 			if (other.course != null)
 				return false;
 		} else if (!course.equals(other.course))
 			return false;
-		if (date == null) {
-			if (other.date != null)
+		if (employee == null) {
+			if (other.employee != null)
 				return false;
-		} else if (!date.equals(other.date))
+		} else if (!employee.equals(other.employee))
 			return false;
-		if (employeeId != other.employeeId)
-			return false;
-		if (graduation == null) {
-			if (other.graduation != null)
+		if (manager == null) {
+			if (other.manager != null)
 				return false;
-		} else if (!graduation.equals(other.graduation))
+		} else if (!manager.equals(other.manager))
 			return false;
 		if (Double.doubleToLongBits(price) != Double.doubleToLongBits(other.price))
 			return false;
@@ -221,21 +216,17 @@ public class Request {
 				return false;
 		} else if (!status.equals(other.status))
 			return false;
-		if (type == null) {
-			if (other.type != null)
-				return false;
-		} else if (!type.equals(other.type))
-			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Request [requestId=" + requestId + ", employeeId=" + employeeId + ", school=" + school + ", course="
-				+ course + ", type=" + type + ", price=" + price + ", status=" + status + ", graduation=" + graduation
-				+ ", receipt=" + receipt + ", date=" + date + "]";
+		return "Request [requestId=" + requestId + ", employee=" + employee + ", school=" + school + ", course="
+				+ course + ", price=" + price + ", status=" + status + ", receipt=" + receipt + ", manager=" + manager
+				+ ", comments=" + comments + "]";
 	}
-	
-	
 
+
+
+	
 }

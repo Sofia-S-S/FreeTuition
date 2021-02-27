@@ -49,6 +49,7 @@ public class EmployeeLoginServlet extends HttpServlet {
 
      
         LoginDAOImpl dao = new LoginDAOImpl();
+        EmployeeDAOImpl daoE = new  EmployeeDAOImpl();
         
        //The core Logic of the Registration application is present here. We are going to insert user data in to the database.  
 		try {
@@ -66,7 +67,9 @@ public class EmployeeLoginServlet extends HttpServlet {
         	request.getSession(true).setAttribute("userId", user.getId());
         	
         	
-        	request.setAttribute("id", user.getId());
+        	
+        	
+//        	request.setAttribute("id", user.getId());
         	System.out.print("Your id is: "+user.getId());
 //        	 EmployeeDAOImpl daoE = new EmployeeDAOImpl();	
 //        	  Employee employee = daoE.getEmployeeById(123); // Obtain login info

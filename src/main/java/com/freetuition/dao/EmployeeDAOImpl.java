@@ -15,8 +15,6 @@ import com.freetuition.exception.BusinessException;
 import com.freetuition.model.Employee;
 import com.freetuition.model.Login;
 import com.freetuition.model.Request;
-import com.freetuition.model.RequestApproved;
-import com.freetuition.model.RequestRejected;
 import com.freetuition.util.HibernateSessionFactory;
 
 public class EmployeeDAOImpl {
@@ -139,13 +137,5 @@ public class EmployeeDAOImpl {
 		return null;	
 	}
 	
-	public RequestApproved getApprovedRequest (int  requestId) {
-		return null;
-		
-	}
-	public RequestRejected getRejectedRequest (int  requestId) {
-		return null;
-		
-	}
 	
 }

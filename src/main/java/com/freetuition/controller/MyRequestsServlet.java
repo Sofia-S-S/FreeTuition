@@ -35,8 +35,8 @@ public class MyRequestsServlet extends HttpServlet {
 		
 		List<Request> reqList;
 		try {
-			int id = (Integer) request.getSession(false).getAttribute("userId");
-			reqList = repo.getAllReqByEmployee(id);
+			int id = (int) request.getSession(false).getAttribute("userId");
+			reqList = repo.getAllReqByEmployee(2);
 
 		
 		ObjectMapper objectMapper = new ObjectMapper();

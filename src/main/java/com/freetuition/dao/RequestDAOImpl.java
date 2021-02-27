@@ -9,7 +9,6 @@ import org.hibernate.Transaction;
 
 import com.freetuition.exception.BusinessException;
 import com.freetuition.model.Request;
-import com.freetuition.model.RequestApproved;
 import com.freetuition.util.HibernateSessionFactory;
 
 public class RequestDAOImpl {
@@ -42,7 +41,7 @@ public class RequestDAOImpl {
 		return reqs;
 	}
 	
-	public List<Request> getAllReqByEmployee(int employeeId) throws BusinessException {
+	public List<Request> getAllReqByEmployee(int employee) throws BusinessException {
 		List<Request> reqs = new ArrayList<>();
 		
 		Session s = null;
@@ -57,7 +56,7 @@ public class RequestDAOImpl {
 			 * than the entities in the DB. It provides a more object-oriented
 			 * approach to data persistence.
 			 */
-			reqs = s.createQuery("FROM Request r WHERE r.employeeId = :employeeId", Request.class).setParameter("employeeId",employeeId).getResultList();
+			reqs = s.createQuery("FROM Request r WHERE r.employee.id = :employee", Request.class).setParameter("employee",employee).getResultList();
 			tx.commit();
 		}catch(HibernateException e) {
 			e.printStackTrace();
@@ -97,7 +96,7 @@ public class RequestDAOImpl {
 		}
 	}
 	
-	public void approveRequest(Request req, RequestApproved reqA) {
+	public void approveRequest(Request req) {
 		
 		
 		Session s = null;
@@ -107,7 +106,6 @@ public class RequestDAOImpl {
 			s = HibernateSessionFactory.getSession();
 			tx = s.beginTransaction();
 	
-			s.save(reqA);
 			s.update(req);
 			
 			tx.commit();

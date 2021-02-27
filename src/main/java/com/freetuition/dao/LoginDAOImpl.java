@@ -14,7 +14,7 @@ public class LoginDAOImpl {
 	// -------------------------------------
 
 	
-//CHANGE TO LOGIN AND PASSWORD	
+
 	public Login letEmployeeLogin(String login, String password) throws BusinessException, ClassNotFoundException  {
 		Login lg= null;
 	

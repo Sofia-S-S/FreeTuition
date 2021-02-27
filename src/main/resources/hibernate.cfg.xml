@@ -55,7 +55,6 @@
 		<!-- ==================================Add Mapping ======================================= -->
 		<mapping class="com.freetuition.model.Card"/>
 		<mapping class="com.freetuition.model.Request"/>
-		<mapping class="com.freetuition.model.RequestApproved"/>
 		<mapping class="com.freetuition.model.Employee"/>
 		<mapping class="com.freetuition.model.Login"/>
 		

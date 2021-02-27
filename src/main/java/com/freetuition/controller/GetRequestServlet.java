@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.freetuition.model.Employee;
 import com.freetuition.model.Request;
 
 /**
@@ -34,7 +35,10 @@ public class GetRequestServlet extends HttpServlet {
 
 //		RequesDAOImpl dao = new RequesDAOImpl();
 //		Request req = dao.getRequestById
-		Request req = new Request(3,300,"Revature","Java","full-time", 599.00, "pending", new Date(),null,new Date());
+		Employee employee = new Employee(7,"Natasha","Brick","West","Manager",3,"tasha@west.com",888776647,"Home");
+		Employee manager = new Employee(3,"Lui","Grog","West","Manager",10,"lui@west.com",888776647,"Home");
+		
+		Request req = new Request(7, employee, "school", "course",800,"pending",null, manager, "pending");
 	
 		ObjectMapper objectMapper = new ObjectMapper();
 		
