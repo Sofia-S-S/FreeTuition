@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -28,8 +30,11 @@ public class Employee {
 	private String company;
 	@Column
 	private String position;
-	@Column
-	private int managerId;
+	
+	//One to one relationship
+	@JoinColumn
+	@OneToOne
+	private Employee manager;
 	@Column
 	private String email;
 	@Column
@@ -38,8 +43,10 @@ public class Employee {
 	private String address;
 	
 	public Employee() {}
+	
+	
 
-	public Employee(int id, String firstName, String lastName, String company, String position, int managerId,
+	public Employee(int id, String firstName, String lastName, String company, String position, Employee manager,
 			String email, long contact, String address) {
 		super();
 		this.id = id;
@@ -47,11 +54,13 @@ public class Employee {
 		this.lastName = lastName;
 		this.company = company;
 		this.position = position;
-		this.managerId = managerId;
+		this.manager = manager;
 		this.email = email;
 		this.contact = contact;
 		this.address = address;
 	}
+
+
 
 	public int getId() {
 		return id;
@@ -93,12 +102,12 @@ public class Employee {
 		this.position = position;
 	}
 
-	public int getManagerId() {
-		return managerId;
+	public Employee getManager() {
+		return manager;
 	}
 
-	public void setManagerId(int managerId) {
-		this.managerId = managerId;
+	public void setManager(Employee manager) {
+		this.manager = manager;
 	}
 
 	public String getEmail() {
@@ -124,7 +133,8 @@ public class Employee {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
+
+
 
 	@Override
 	public int hashCode() {
@@ -137,10 +147,12 @@ public class Employee {
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
-		result = prime * result + managerId;
+		result = prime * result + ((manager == null) ? 0 : manager.hashCode());
 		result = prime * result + ((position == null) ? 0 : position.hashCode());
 		return result;
 	}
+
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -180,7 +192,10 @@ public class Employee {
 				return false;
 		} else if (!lastName.equals(other.lastName))
 			return false;
-		if (managerId != other.managerId)
+		if (manager == null) {
+			if (other.manager != null)
+				return false;
+		} else if (!manager.equals(other.manager))
 			return false;
 		if (position == null) {
 			if (other.position != null)
@@ -190,13 +205,15 @@ public class Employee {
 		return true;
 	}
 
+
+
 	@Override
 	public String toString() {
 		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", company=" + company
-				+ ", position=" + position + ", managerId=" + managerId + ", email=" + email + ", contact=" + contact
+				+ ", position=" + position + ", manager=" + manager + ", email=" + email + ", contact=" + contact
 				+ ", address=" + address + "]";
 	}
-	
-	
+
+
 
 }

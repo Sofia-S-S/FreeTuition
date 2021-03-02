@@ -61,11 +61,11 @@ public class NewRequestServlet extends HttpServlet {
 		EmployeeDAOImpl daoE  = new EmployeeDAOImpl();
 		try {
 			Employee emp = daoE.getEmployeeById(employeeId);
-			int managerId = emp.getManagerId();
+			int managerId = emp.getManager().getId();
 		
-
-		Employee employee = new Employee(employeeId,"x","x","x","x",1,"x",1,"x");
-		Employee manager = new Employee(managerId,"x","x","x","x",1,"x",1,"x");
+		Employee someone = new Employee();
+		Employee employee = new Employee(employeeId,"x","x","x","x",someone,"x",1,"x");
+		Employee manager = new Employee(managerId,"x","x","x","x",someone,"x",1,"x");
 		
 		Request req = new Request(1, employee, school, course, price,"pending",null, manager, "");
 		System.out.println(req);
@@ -78,6 +78,7 @@ public class NewRequestServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		 request.getRequestDispatcher("pages/employee-home-page.html").forward(request, response);
 	}
 
 }

@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.freetuition.dao.EmployeeDAOImpl;
 import com.freetuition.model.Employee;
 
@@ -41,8 +40,9 @@ public class UpdateInfoServlet extends HttpServlet {
         String address = request.getParameter("address");
         int managerId = Integer.parseInt(request.getParameter("managerId"));
 
-        
-    	Employee employee = new Employee(id,first,last,company,position,managerId,email,contact,address);
+        Employee manager = new Employee();
+        manager.setId(managerId);
+    	Employee employee = new Employee(id,first,last,company,position,manager,email,contact,address);
     	
     	dao.updateEmployee(employee);
 		
@@ -62,8 +62,8 @@ public class UpdateInfoServlet extends HttpServlet {
 //		System.out.println(emp.getFirstName());
 		 
 		 //RIGHT CODE
-	    	ObjectMapper objectMapper = new ObjectMapper();
-			Employee emp = objectMapper.readValue(request.getInputStream(), Employee.class);
+//	    	ObjectMapper objectMapper = new ObjectMapper();
+//			Employee emp = objectMapper.readValue(request.getInputStream(), Employee.class);
     	
 		 
 

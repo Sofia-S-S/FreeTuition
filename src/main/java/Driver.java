@@ -1,5 +1,8 @@
+import com.freetuition.dao.EmployeeDAOImpl;
 import com.freetuition.dao.RequestDAOImpl;
 import com.freetuition.exception.BusinessException;
+import com.freetuition.model.Employee;
+import com.freetuition.model.Login;
 
 public class Driver {
 	
@@ -39,21 +42,25 @@ public class Driver {
 //		}
 		
 //		System.out.println(repo.getAllReqByEmployee(10));
-	    
-//		Employee employee = new Employee(7,"Natasha","Brick","West","Manager",3,"tasha@west.com",888776647,"Home");
-//		Login login = new Login(7,"lu","lulu");
-//		Employee manager = new Employee(3,"Lui","Grog","West","Manager",10,"lui@west.com",888776647,"Home");
+	    Employee someone = new Employee();
+	    someone.setId(1);
+
+		Login login = new Login(7,"lu","lulu");
+		Employee manager = new Employee();
+
+		Employee employee = new Employee(3,"Luigi","Mario","West","Manager",someone,"lui@west.com",888779066,"796 W Red St");
+//		Employee employee = new Employee(7,"Natasha","Brick","West","CEO",null,"tasha@west.com",888776647,"377 W Green St");
 //		
 //		Request req = new Request(7, employee, "school", "course",800,"pending",null, manager, "pending");
 //		System.out.println(req);
 		
-//		EmployeeDAOImpl daoE = new EmployeeDAOImpl();
-//		try {
-//			daoE.createEmployee(manager, login);
-//		} catch (BusinessException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		EmployeeDAOImpl daoE = new EmployeeDAOImpl();
+		try {
+			daoE.createEmployee(employee, login);
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

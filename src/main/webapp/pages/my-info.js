@@ -87,7 +87,7 @@ function getInfo(){
                 let managerId = document.createElement('input')
                 managerId.name = "managerId"
                 managerId.type = "hidden"
-                managerId.value = employee.managerId;
+                managerId.value = employee.manager.id;
                 emptyDiv.append(managerId)
 
                 let btn = document.createElement('button')

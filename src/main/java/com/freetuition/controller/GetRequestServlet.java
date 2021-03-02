@@ -1,7 +1,6 @@
 package com.freetuition.controller;
 
 import java.io.IOException;
-import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -35,8 +34,9 @@ public class GetRequestServlet extends HttpServlet {
 
 //		RequesDAOImpl dao = new RequesDAOImpl();
 //		Request req = dao.getRequestById
-		Employee employee = new Employee(7,"Natasha","Brick","West","Manager",3,"tasha@west.com",888776647,"Home");
-		Employee manager = new Employee(3,"Lui","Grog","West","Manager",10,"lui@west.com",888776647,"Home");
+		Employee someone = new Employee();
+		Employee employee = new Employee(7,"Natasha","Brick","West","Manager",someone,"tasha@west.com",888776647,"Home");
+		Employee manager = new Employee(3,"Lui","Grog","West","Manager",someone,"lui@west.com",888776647,"Home");
 		
 		Request req = new Request(7, employee, "school", "course",800,"pending",null, manager, "pending");
 	

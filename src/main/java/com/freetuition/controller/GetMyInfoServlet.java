@@ -50,7 +50,8 @@ public class GetMyInfoServlet extends HttpServlet {
 
 		response.setContentType("application/json");
 //		
-//		Employee emp = new Employee(1,"Jessica","Brown","West Loop","engeneer",5,"jess@west.com",875675588L,"6789 N Green St");
+//		Employee manager = new Employee();
+//		Employee emp = new Employee(1,"Jessica","Brown","West Loop","engeneer",manager,"jess@west.com",875675588L,"6789 N Green St");
 //		
 		ObjectMapper objectMapper = new ObjectMapper();
 		

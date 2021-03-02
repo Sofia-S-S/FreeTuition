@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.freetuition.dao.EmployeeDAOImpl;
-import com.freetuition.dao.LoginDAOImpl;
 import com.freetuition.exception.BusinessException;
 import com.freetuition.model.Employee;
 import com.freetuition.model.Login;
@@ -51,12 +50,14 @@ public class AddEmployeeServlet extends HttpServlet {
         String email = request.getParameter("email");
         long contact = Long.parseLong(request.getParameter("contact"));
         String address = request.getParameter("address");
-        int managerId = Integer.parseInt(request.getParameter("managerId"));
+        int managerId = (int) request.getSession(false).getAttribute("userId");
         //For Login
         String login = request.getParameter("login");
         String password = request.getParameter("password");
         
-    	Employee employee = new Employee(id,first,last,company,position,managerId,email,contact,address);
+        Employee manager = new Employee();
+        manager.setId(managerId);
+    	Employee employee = new Employee(id,first,last,company,position,manager,email,contact,address);
     	System.out.println(employee);
 
 
@@ -70,6 +71,8 @@ public class AddEmployeeServlet extends HttpServlet {
 	} catch (BusinessException e) {
 
 	}
+		 request.getRequestDispatcher("pages/manager-home-page.html").forward(request, response);
     }
+	
 
 }
