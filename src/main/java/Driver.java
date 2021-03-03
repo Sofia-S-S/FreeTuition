@@ -1,5 +1,5 @@
-import com.freetuition.dao.EmployeeDAOImpl;
-import com.freetuition.dao.RequestDAOImpl;
+import com.freetuition.dao.impl.EmployeeDAOImpl;
+import com.freetuition.dao.impl.RequestDAOImpl;
 import com.freetuition.exception.BusinessException;
 import com.freetuition.model.Employee;
 import com.freetuition.model.Login;

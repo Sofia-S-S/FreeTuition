@@ -8,10 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.freetuition.dao.EmployeeDAOImpl;
-import com.freetuition.dao.LoginDAOImpl;
+import com.freetuition.dao.impl.EmployeeDAOImpl;
 import com.freetuition.exception.BusinessException;
 import com.freetuition.model.Login;
+import com.freetuition.service.LoginService;
+import com.freetuition.service.impl.LoginServiceImpl;
 
 /**
  * Servlet implementation class ManagerLoginServlet
@@ -50,9 +51,9 @@ public class ManagerLoginServlet extends HttpServlet {
 			String login = request.getParameter("login");
 			String password = request.getParameter("password");
 
-			LoginDAOImpl dao = new LoginDAOImpl();
+			LoginService service = new LoginServiceImpl();
 
-			Login user = dao.letEmployeeLogin(login, password);
+			Login user = service.letEmployeeLogin(login, password);
 
 			if (user != null) // On success, you can forward user to Home page
 			{
@@ -79,7 +80,7 @@ public class ManagerLoginServlet extends HttpServlet {
 
 				request.getRequestDispatcher("ooops.html").forward(request, response); // Forward to Oops Page
 
-		} catch (BusinessException | ClassNotFoundException e) {
+		} catch (BusinessException  e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			request.getRequestDispatcher("ooops.html").forward(request, response); // Forward to Oops Page

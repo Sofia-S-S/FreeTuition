@@ -1,4 +1,4 @@
-package com.freetuition.dao;
+package com.freetuition.dao.impl;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -17,7 +17,7 @@ public class LoginDAOImpl {
 
 	
 
-	public Login letEmployeeLogin(String login, String password) throws BusinessException, ClassNotFoundException  {
+	public Login letEmployeeLogin(String login, String password) throws BusinessException {
 		Login lg= null;
 	
 		

@@ -1,7 +1,6 @@
 package com.freetuition.controller;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.freetuition.dao.EmployeeDAOImpl;
+import com.freetuition.dao.impl.EmployeeDAOImpl;
 import com.freetuition.exception.BusinessException;
 import com.freetuition.model.Employee;
 

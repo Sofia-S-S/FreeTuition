@@ -87,7 +87,7 @@ function getInfo(){
              
                 let managerId = document.createElement('input')
                 managerId.name = "managerId"
-               // managerId.type = "hidden"
+               managerId.type = "hidden"
                 managerId.value = employee.manager;
                 emptyDiv.append(managerId)
                 console.log("Manager id is "+employee.manager +" or "+employee.manager.id)

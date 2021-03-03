@@ -1,4 +1,4 @@
-package com.freetuition.dao;
+package com.freetuition.dao.impl;
 
 import java.util.ArrayList;
 import java.util.List;

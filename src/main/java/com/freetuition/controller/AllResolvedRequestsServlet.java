@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.freetuition.dao.RequestDAOImpl;
+import com.freetuition.dao.impl.RequestDAOImpl;
 import com.freetuition.exception.BusinessException;
 import com.freetuition.model.Request;
 

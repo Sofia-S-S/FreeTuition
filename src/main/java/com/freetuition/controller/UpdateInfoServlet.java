@@ -8,13 +8,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.freetuition.dao.EmployeeDAOImpl;
+import com.freetuition.dao.impl.EmployeeDAOImpl;
+import com.freetuition.exception.BusinessException;
 import com.freetuition.model.Employee;
 
 
 
 public class UpdateInfoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+//	public static final Logger log = LogManager.getFormatterLogger(UpdateInfoServlet.class); // v2 set up
 
     public UpdateInfoServlet() {
         super();
@@ -40,13 +43,9 @@ public class UpdateInfoServlet extends HttpServlet {
         String address = request.getParameter("address");
         int managerId = Integer.parseInt(request.getParameter("managerId"));
 
-//        Employee manager = new Employee();
-//        manager.setId(managerId);
     	Employee employee = new Employee(id,first,last,company,position,managerId,email,contact,address);
     	
     	dao.updateEmployee(employee);
-		
-		System.out.println(employee);
 		
 		 request.getRequestDispatcher("pages/employee-home-page.html").forward(request, response);
 		

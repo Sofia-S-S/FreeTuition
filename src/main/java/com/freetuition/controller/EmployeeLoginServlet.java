@@ -7,10 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.freetuition.dao.LoginDAOImpl;
 import com.freetuition.exception.BusinessException;
-
 import com.freetuition.model.Login;
+import com.freetuition.service.LoginService;
+import com.freetuition.service.impl.LoginServiceImpl;
 
 
 public class EmployeeLoginServlet extends HttpServlet {
@@ -36,7 +36,7 @@ public class EmployeeLoginServlet extends HttpServlet {
 	        String password = request.getParameter("password");
 	        
 	     
-	        LoginDAOImpl dao = new LoginDAOImpl();
+	        LoginService dao = new LoginServiceImpl();
 			
 	        System.out.println(login);
 	        System.out.println(password);
@@ -62,7 +62,7 @@ public class EmployeeLoginServlet extends HttpServlet {
 
         request.getRequestDispatcher("ooops.html").forward(request, response); // Forward to Oops Page
 
-		} catch (BusinessException | ClassNotFoundException e) {
+		} catch (BusinessException  e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			request.getRequestDispatcher("ooops.html").forward(request, response); // Forward to Oops Page

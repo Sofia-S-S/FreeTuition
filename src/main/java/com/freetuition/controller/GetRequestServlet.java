@@ -32,9 +32,7 @@ public class GetRequestServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-//		RequesDAOImpl dao = new RequesDAOImpl();
-//		Request req = dao.getRequestById
-		Employee someone = new Employee();
+
 		Employee employee = new Employee(7,"Natasha","Brick","West","Manager",1,"tasha@west.com",888776647,"Home");
 		Employee manager = new Employee(3,"Lui","Grog","West","Manager",1,"lui@west.com",888776647,"Home");
 		

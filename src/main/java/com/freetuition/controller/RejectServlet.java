@@ -7,7 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.freetuition.dao.RequestDAOImpl;
+import com.freetuition.dao.impl.RequestDAOImpl;
+import com.freetuition.exception.BusinessException;
 import com.freetuition.model.Employee;
 import com.freetuition.model.Request;
 
@@ -18,9 +19,7 @@ import com.freetuition.model.Request;
 public class RejectServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+	
     public RejectServlet() {
         super();
         // TODO Auto-generated constructor stub
