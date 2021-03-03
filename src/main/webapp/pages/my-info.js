@@ -26,7 +26,8 @@ function getInfo(){
 
             //Create new input for each field
             //Get value from object we got from JSON
-            //Append our new input to empty div        
+            //Append our new input to empty div    
+                
                 let firstName = document.createElement('input')
                 firstName.name = "firstName"; // Name we set to retrive field afre submition
                 firstName.type = "text"
@@ -86,9 +87,10 @@ function getInfo(){
              
                 let managerId = document.createElement('input')
                 managerId.name = "managerId"
-                managerId.type = "hidden"
-                managerId.value = employee.manager.id;
+               // managerId.type = "hidden"
+                managerId.value = employee.manager;
                 emptyDiv.append(managerId)
+                console.log("Manager id is "+employee.manager +" or "+employee.manager.id)
 
                 let btn = document.createElement('button')
                 btn.className = "btn"

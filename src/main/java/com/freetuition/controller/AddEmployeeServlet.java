@@ -55,9 +55,8 @@ public class AddEmployeeServlet extends HttpServlet {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
         
-        Employee manager = new Employee();
-        manager.setId(managerId);
-    	Employee employee = new Employee(id,first,last,company,position,manager,email,contact,address);
+  
+    	Employee employee = new Employee(id,first,last,company,position,managerId,email,contact,address);
     	System.out.println(employee);
 
 

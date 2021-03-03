@@ -60,13 +60,11 @@ public class NewRequestServlet extends HttpServlet {
 		//Get employee to Find manager 
 		EmployeeDAOImpl daoE  = new EmployeeDAOImpl();
 		try {
-			Employee emp = daoE.getEmployeeById(employeeId);
-			int managerId = emp.getManager().getId();
-		
-		Employee someone = new Employee();
-		Employee employee = new Employee(employeeId,"x","x","x","x",someone,"x",1,"x");
-		Employee manager = new Employee(managerId,"x","x","x","x",someone,"x",1,"x");
-		
+			
+			Employee employee = daoE.getEmployeeById(employeeId);
+			Employee manager = new Employee();
+			manager.setId(employee.getManager());
+	
 		Request req = new Request(1, employee, school, course, price,"pending",null, manager, "");
 		System.out.println(req);
 

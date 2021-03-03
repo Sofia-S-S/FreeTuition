@@ -54,9 +54,8 @@ public class RejectServlet extends HttpServlet {
 
        	String comments = request.getParameter("comments");
        	
-       	Employee someone = new Employee();
-       	Employee employee = new Employee(emplId,"x","x","X","x",someone,"x",1,"x");
-       	Employee manager = new Employee(manId,"x","x","X","x",someone,"x",1,"x");
+       	Employee employee = new Employee(emplId,"x","x","X","x",1,"x",1,"x");
+       	Employee manager = new Employee(manId,"x","x","X","x",1,"x",1,"x");
        	      	
        	Request req = new Request(id,employee,school,course,price,status,receipt,manager,comments);
       	

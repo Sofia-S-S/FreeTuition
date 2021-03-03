@@ -100,6 +100,16 @@
 		<url-pattern>/pending-requests</url-pattern>
 	</servlet-mapping>
 	
+		<servlet>
+		<servlet-name>AllResolvedRequestsServlet</servlet-name>
+		<servlet-class>com.freetuition.controller.AllResolvedRequestsServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>AllResolvedRequestsServlet</servlet-name>
+		<url-pattern>/all-resolved-requests</url-pattern>
+	</servlet-mapping>
+	
 	
 	<servlet>
 		<servlet-name>ManagerLoginServlet</servlet-name>
@@ -119,6 +129,16 @@
 	<servlet-mapping>
 		<servlet-name>OneEmployeeRequestsServlet</servlet-name>
 		<url-pattern>/one-employee-requests</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>AllEmployeesServlet</servlet-name>
+		<servlet-class>com.freetuition.controller.AllEmployeesServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>AllEmployeesServlet</servlet-name>
+		<url-pattern>/all-employees</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>

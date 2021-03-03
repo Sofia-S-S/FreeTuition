@@ -40,9 +40,9 @@ public class UpdateInfoServlet extends HttpServlet {
         String address = request.getParameter("address");
         int managerId = Integer.parseInt(request.getParameter("managerId"));
 
-        Employee manager = new Employee();
-        manager.setId(managerId);
-    	Employee employee = new Employee(id,first,last,company,position,manager,email,contact,address);
+//        Employee manager = new Employee();
+//        manager.setId(managerId);
+    	Employee employee = new Employee(id,first,last,company,position,managerId,email,contact,address);
     	
     	dao.updateEmployee(employee);
 		

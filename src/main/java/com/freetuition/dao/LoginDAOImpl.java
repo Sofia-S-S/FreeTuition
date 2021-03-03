@@ -41,7 +41,7 @@ public class LoginDAOImpl {
 			
 			
 			tx.commit();
-		}catch(HibernateException e) {
+		}catch(HibernateException e) { ///add NoResultException
 			System.out.print(e);
 //			e.printStackTrace();
 			tx.rollback();

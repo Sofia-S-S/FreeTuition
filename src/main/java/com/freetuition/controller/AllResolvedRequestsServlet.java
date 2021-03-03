@@ -1,6 +1,7 @@
 package com.freetuition.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,20 +10,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.freetuition.model.Employee;
+import com.freetuition.dao.RequestDAOImpl;
+import com.freetuition.exception.BusinessException;
 import com.freetuition.model.Request;
 
 /**
- * Servlet implementation class GetRequestServlet
+ * Servlet implementation class GetAllResolvedRequestsServlet
  */
-@WebServlet("/GetRequestServlet")
-public class GetRequestServlet extends HttpServlet {
+@WebServlet("/AllResolvedRequestsServlet")
+public class AllResolvedRequestsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GetRequestServlet() {
+    public AllResolvedRequestsServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,26 +33,26 @@ public class GetRequestServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-//		RequesDAOImpl dao = new RequesDAOImpl();
-//		Request req = dao.getRequestById
-		Employee someone = new Employee();
-		Employee employee = new Employee(7,"Natasha","Brick","West","Manager",1,"tasha@west.com",888776647,"Home");
-		Employee manager = new Employee(3,"Lui","Grog","West","Manager",1,"lui@west.com",888776647,"Home");
-		
-		Request req = new Request(7, employee, "school", "course",800,"pending",null, manager, "pending");
 	
+	    RequestDAOImpl repo = new RequestDAOImpl();
+		
+		response.setContentType("application/json");
+
+		
+
+		try {
+			List<Request> reqList = repo.getAllRequests();
+
+		
 		ObjectMapper objectMapper = new ObjectMapper();
 		
-		final String JSON = objectMapper.writeValueAsString(req);
+		final String JSON = objectMapper.writeValueAsString(reqList);
 		
 		response.getWriter().write(JSON);
-	
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();}
+		}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);

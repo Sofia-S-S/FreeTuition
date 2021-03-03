@@ -73,7 +73,7 @@ public class OneEmployeeRequestsServlet extends HttpServlet {
 			
 		//Check manager id
 	       int manId = (Integer) request.getSession(false).getAttribute("userId");
-	       if (manId == employee.getManager().getId()) {
+	       if (manId == employee.getManager()) {
 	    	   
 	    	   //forward to the page with requests
 	    	   request.setAttribute("id", employee.getId()); //pass employee id with request

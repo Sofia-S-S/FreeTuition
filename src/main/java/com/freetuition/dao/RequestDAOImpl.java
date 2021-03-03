@@ -180,5 +180,33 @@ public class RequestDAOImpl {
 	
 	//-----------------------------------------------------
 	
+	//-------------- All Requests  ----------------------------------------
+	
+	public List<Request> getAllRequests() throws BusinessException {
+		List<Request> reqs = new ArrayList<>();
+		
+		Session s = null;
+		Transaction tx = null;
+		
+		try {
+			s = HibernateSessionFactory.getSession();
+			tx = s.beginTransaction();
+			/*
+			 * Hibernate has its own query language called "HQL" - Hibernate
+			 * Query Language. HQL allows us to emphasize our Java models rather
+			 * than the entities in the DB. It provides a more object-oriented
+			 * approach to data persistence.
+			 */
+			reqs = s.createQuery("FROM Request", Request.class).getResultList();
+			tx.commit();
+		}catch(HibernateException e) {
+			e.printStackTrace();
+			tx.rollback();
+		}finally {
+			s.close();
+		}
+		
+		return reqs;
+	}
 
 }

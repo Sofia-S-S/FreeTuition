@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Pending Requests</title>
+<title>My requests</title>
 <link rel="stylesheet" href="../styles/style.css"></link>
 </head>
 <body>
@@ -12,31 +12,32 @@
 			<h5>Tuition Reimbursement Management System</h5>
 		</header>
 		<br/><br/>
-		<form action="/requests-pending.html">
-			<button class="btn">Go Back</button>
-		</form>
+
+		<button class="btn" onclick="goBack()">Go Back</button>
 		<br/><br/>
 <form>
 	<table id = "addHere">
 	<tr>
 	
 		<th>Id</th>
-		<th>Employee</th>
+		<th>Requested by</th>
 		<th>School</th>
 		<th>Course</th>
 		<th>Price</th>
-		<th>Receipt</th>
-		<th>Resolve</th>
+		<th>Receipt</th>	
+		<th>Status</th>
+		<th>Manager</th>
+		<th>Comments</th>
 
 	</tr>
 
 	</table>
 </form>		
-		
+		</div>
 
-	</div>
+
 <footer> &#169; 2021, Sofka-S-S</footer>
-    <script src="./requests-pending.js"></script> 
+    <script src="./all-resolved-requests.js"></script> 
 	<script>
 		function goBack() {
 		  window.history.back();
